@@ -1,0 +1,9 @@
+{
+  "feature_columns": [
+    "nature_score",
+    "food_score",
+    "safety_score",
+    "cost_score",
+    "beach_score"
+  ]
+}
