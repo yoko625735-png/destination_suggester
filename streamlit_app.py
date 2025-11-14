@@ -311,7 +311,7 @@ def ensure_pca_once(df: pd.DataFrame, feats: list[str], scaler, kmeans):
         loadings = pd.DataFrame(pca.components_.T, index=feats, columns=["PC1","PC2"])
         evr = pca.explained_variance_ratio_[:2]
         # Custom PCA axis descriptions (English, no garbling)
-        pc1_text = "PC1 = more nature  ←→  more food / urban"
+        pc1_text = "PC1 = more food / urban  ←→  more nature & safety"
         pc2_text = "PC2 = safer / higher quality  ↑↓  more cost-friendly"
         st.session_state[key] = {
             "pca": pca, "Z": Z, "centers_2d": centers_2d, "feats": feats,
