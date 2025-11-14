@@ -310,10 +310,9 @@ def ensure_pca_once(df: pd.DataFrame, feats: list[str], scaler, kmeans):
         centers_2d = pca.transform(kmeans.cluster_centers_)
         loadings = pd.DataFrame(pca.components_.T, index=feats, columns=["PC1","PC2"])
         evr = pca.explained_variance_ratio_[:2]
-        pc1_pos, pc1_neg = _summarize_axis(loadings, "PC1", 2)
-        pc2_pos, pc2_neg = _summarize_axis(loadings, "PC2", 2)
-        pc1_text = f"PC1 ≈ {' & '.join(pc1_pos)}  ←→  {' & '.join(pc1_neg)}"
-        pc2_text = f"PC2 ≈ {' & '.join(pc2_pos)}  ←→  {' & '.join(pc2_neg)}"
+        # バナー用テキストを手動指定
+        pc1_text = "PC1 = 自然豊か → ← 食・都市度が高い"
+        pc2_text = "PC2 = 安全・快適 ↑ ↓ 物価が安い"
         st.session_state[key] = {
             "pca": pca, "Z": Z, "centers_2d": centers_2d, "feats": feats,
             "loadings": loadings, "evr": evr, "pc1_text": pc1_text, "pc2_text": pc2_text
